@@ -14,4 +14,12 @@ class HttpClientJwtCreated implements HttpClientContract
             "secret" => "e71829c351aa4242c2719cbfbe671c09"
         ];
     }
+
+    public function get(string $url, array $params = [])
+    {
+    }
+
+    public function delete(string $url, array $params = [])
+    {
+    }
 }

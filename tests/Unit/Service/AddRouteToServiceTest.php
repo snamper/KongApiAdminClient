@@ -24,8 +24,6 @@ class AddRouteToServiceTest extends TestCase
         $route = new Route($routeConfiguration);
         $isRoutesCreated = $service->addRoutes([$route]);
 
-        foreach($isRoutesCreated as $isRouteCreated){
-            $this->assertTrue($isRouteCreated);
-        }
+        $this->assertTrue($isRoutesCreated);
     }
 }

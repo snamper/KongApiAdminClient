@@ -1,7 +1,11 @@
 <?php namespace Gco\KongApiClient\Route;
 
+use Gco\KongApiClient\Utils\WhenAble;
+
 class Configuration
 {
+    use WhenAble;
+
     private $name;
 
     private $protocols = [];
@@ -14,7 +18,7 @@ class Configuration
 
     private $regexPriority;
 
-    private $stripePath;
+    private $stripPath;
 
     private $preserveHost;
 
@@ -31,13 +35,7 @@ class Configuration
         $unprocessedConfiguration = get_object_vars($this);
         array_walk( $unprocessedConfiguration, function ($value, $key) use (&$configuration){
             if($value !== null && !empty($value)){
-                $k = snake_case($key);
-                /*if(snake_case($key) === 'hosts'){
-                    $k = snake_case($key).'[]';
-                    $value1 = implode('hosts[]' , $value);
-                    dd($value1);
-                }*/
-                $configuration[$k] = $value;
+                $configuration[snake_case($key)] = $value;
             }
         });
         return $configuration;
@@ -104,12 +102,12 @@ class Configuration
     }
 
     /**
-     * @param bool $stripePath
+     * @param bool $stripPath
      * @return Configuration
      */
-    public function setStripePath(bool $stripePath): Configuration
+    public function setStripPath(bool $stripPath): Configuration
     {
-        $this->stripePath = $stripePath;
+        $this->stripPath = $stripPath;
         return $this;
     }
 

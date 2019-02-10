@@ -13,4 +13,12 @@ class HttpClientCreated implements HttpClientContract
             "custom_id" => "1"
         ];
     }
+
+    public function get(string $url, array $params = [])
+    {
+    }
+
+    public function delete(string $url, array $params = [])
+    {
+    }
 }

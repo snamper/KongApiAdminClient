@@ -32,6 +32,11 @@ class HttpClient implements HttpClientContract
         return json_decode($response->getBody(), true);
     }
 
+    public function delete(string $url, array $params = [])
+    {
+        $this->client->delete($url, $params);
+    }
+
     /**
      * @param $e
      * @throws SchemaViolation

@@ -21,4 +21,12 @@ class HttpClientOk implements HttpClientContract
             "write_timeout" => 60000
         ];
     }
+
+    public function get(string $url, array $params = [])
+    {
+    }
+
+    public function delete(string $url, array $params = [])
+    {
+    }
 }

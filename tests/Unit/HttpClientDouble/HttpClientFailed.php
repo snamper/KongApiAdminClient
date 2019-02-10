@@ -8,4 +8,12 @@ class HttpClientFailed implements HttpClientContract
     {
         throw new \Exception("something failed");
     }
+
+    public function get(string $url, array $params = [])
+    {
+    }
+
+    public function delete(string $url, array $params = [])
+    {
+    }
 }

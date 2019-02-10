@@ -35,7 +35,7 @@ class Consumer
     public function createJwtToken():Jwt
     {
         $jwtData = $this->httpClient->post(config('kong.url').'/consumers/'.$this->id.'/jwt');
-        $this->jwt[] = $jwt = new Jwt($jwtData['id'], $jwtData['consumer_id'], $jwtData['key'], $jwtData['secret']);
+        $this->jwt[$jwtData['id']] = $jwt = new Jwt($jwtData['id'], $jwtData['consumer_id'], $jwtData['key'], $jwtData['secret']);
         return $jwt;
     }
 
