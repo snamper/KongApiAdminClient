@@ -2,6 +2,8 @@
 
 use Gco\KongApiClient\HttpClient\HttpClient;
 use Gco\KongApiClient\HttpClient\HttpClientContract;
+use Gco\KongApiClient\Repository\ConsumerRepository;
+use Gco\KongApiClient\Repository\Contract\ConsumerRepositoryContract;
 use Gco\KongApiClient\Repository\Contract\RouteRepositoryContract;
 use Gco\KongApiClient\Repository\Contract\ServiceRepositoryContract;
 use Gco\KongApiClient\Repository\RouteRepository;
@@ -14,6 +16,7 @@ class GcoKongApiClientServiceProvider extends ServiceProvider
         HttpClientContract::class => HttpClient::class,
         ServiceRepositoryContract::class => ServiceRepository::class,
         RouteRepositoryContract::class => RouteRepository::class,
+        ConsumerRepositoryContract::class => ConsumerRepository::class,
     ];
 
     public function boot()

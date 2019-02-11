@@ -34,17 +34,23 @@ class RouteRepository implements RouteRepositoryContract
 
     public function delete(string $identity): bool
     {
-        $this->httpClient->delete( config('kong.url').'/routes'.$identity);
+        $this->httpClient->delete( config('kong.url').'/routes/'.$identity);
         return true;
     }
 
     public function findRoutesByService(string $serviceId): array
     {
         $routes = [];
-        $routesData = $this->httpClient->get(config('kong.url').'/services/'.$serviceId.'/routes');
-        foreach($routesData as $route){
-            $routes[] = app(RouteFactory::class)->build($route);
-        }
+        $url = config('kong.url') . '/services/' . $serviceId . '/routes';
+        do {
+            $routesData = $this->httpClient->get($url);
+            foreach ($routesData['data'] as $route) {
+                $routes[] = app(RouteFactory::class)->build($route);
+            }
+            if($routesData['next'] !== null){
+                $url = $routesData['next'];
+            }
+        }while($routesData['next'] !== null);
         return $routes;
     }
 }

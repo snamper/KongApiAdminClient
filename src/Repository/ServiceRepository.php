@@ -1,8 +1,8 @@
 <?php namespace Gco\KongApiClient\Repository;
 
+use Gco\KongApiClient\Factory\ServiceFactory;
 use Gco\KongApiClient\HttpClient\HttpClientContract;
 use Gco\KongApiClient\Repository\Contract\ServiceRepositoryContract;
-use Gco\KongApiClient\Service\Configuration;
 use Gco\KongApiClient\Service\Service;
 
 class ServiceRepository implements ServiceRepositoryContract
@@ -14,14 +14,24 @@ class ServiceRepository implements ServiceRepositoryContract
         $this->httpClient = $httpClient;
     }
 
-    public function find(string $identity):? Service
+    public function find(string $id):? Service
     {
         $serviceData = $this->httpClient->get(
-            config('kong.url') . '/services'
+            config('kong.url') . '/services/'.$id
         );
         if(!empty($serviceData)){
-            $configuration = (new Configuration());
-            return null;
+            return app(ServiceFactory::class)->build($serviceData);
+        }
+        return null;
+    }
+
+    public function findByName(string $name):? Service
+    {
+        $serviceData = $this->httpClient->get(
+            config('kong.url') . '/services/'.$name
+        );
+        if(!empty($serviceData)){
+            return app(ServiceFactory::class)->build($serviceData);
         }
         return null;
     }
@@ -47,7 +57,7 @@ class ServiceRepository implements ServiceRepositoryContract
 
     public function enablePlugin(string $identity, string $pluginName): bool
     {
-        $this->httpClient->post(config('kong.url').'/services/'.$identity.'/plugin', ['name' => $pluginName]);
+        $this->httpClient->post(config('kong.url').'/services/'.$identity.'/plugins', ['name' => $pluginName]);
         return true;
     }
 }

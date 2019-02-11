@@ -9,10 +9,14 @@ class RouteFactory
     {
         $routeConfiguration = new Configuration();
         $routeConfiguration
-            ->setName($params['name'])
+            ->when(isset($params['name']), function () use($routeConfiguration, $params) {
+                $routeConfiguration->setName($params['name']);
+            })
             ->setPaths($params['paths'])
             ->setMethods($params['methods'])
-            ->setHosts($params['hosts'])
+            ->when(isset($params['hosts']), function () use($routeConfiguration, $params) {
+                $routeConfiguration->setHosts($params['hosts']);
+            })
             ->when(isset($params['destinations']), function () use($routeConfiguration, $params){
                 $routeConfiguration->setDestinations($params['destinations']);
             })

@@ -1,7 +1,7 @@
 <?php namespace Gco\KongApiClient\Consumer;
 
 use Gco\KongApiClient\Exceptions\InvalidConsumerInput;
-use Gco\KongApiClient\HttpClient\HttpClientContract;
+use Gco\KongApiClient\Repository\Contract\ConsumerRepositoryContract;
 
 class Consumer
 {
@@ -9,33 +9,32 @@ class Consumer
 
     private $customId;
 
-    private $httpClient;
-
     private $id;
 
     private $jwt;
+
+    private $consumerRepository;
 
     public function __construct(string $name = null, string $customId = null, string $id = null)
     {
         $this->checkInputs($name, $customId);
         $this->name = $name;
         $this->customId = $customId;
-        $this->httpClient = app(HttpClientContract::class);
         $this->id = $id;
+        $this->consumerRepository = app(ConsumerRepositoryContract::class);
     }
 
     public function create()
     {
         $params = $this->prepareParams();
-        $consumerData = $this->httpClient->post(config('kong.url').'/consumers', $params);
+        $consumerData = $this->consumerRepository->create($params);
         $this->id = $consumerData['id'];
         return true;
     }
 
     public function createJwtToken():Jwt
     {
-        $jwtData = $this->httpClient->post(config('kong.url').'/consumers/'.$this->id.'/jwt');
-        $this->jwt[$jwtData['id']] = $jwt = new Jwt($jwtData['id'], $jwtData['consumer_id'], $jwtData['key'], $jwtData['secret']);
+        $this->jwt[] = $jwt = $this->consumerRepository->createJwtToken($this->id);
         return $jwt;
     }
 

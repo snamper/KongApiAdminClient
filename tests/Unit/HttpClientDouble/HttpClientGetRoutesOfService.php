@@ -8,6 +8,8 @@ class HttpClientGetRoutesOfService implements HttpClientContract
     public function get(string $url, array $params = [], array $headers = [])
     {
         return [
+            'next' => null,
+            'data' => [
             [
                 'id' => Uuid::uuid4()->toString(),
                 "created_at" => 1422386534,
@@ -22,7 +24,7 @@ class HttpClientGetRoutesOfService implements HttpClientContract
                 "preserve_host" =>  false,
                 "service" => '{"id":"f5a9c0ca-bdbb-490f-8928-2ca95836239a"}'
             ]
-        ];
+        ]];
     }
 
     public function post(string $url, array $params = [], array $headers = [])

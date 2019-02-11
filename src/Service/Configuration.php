@@ -2,9 +2,12 @@
 
 
 use Gco\KongApiClient\Exceptions\InvalidServiceConfiguration;
+use Gco\KongApiClient\Utils\WhenAble;
 
 class Configuration
 {
+    use WhenAble;
+
     private $name;
 
     private $retries;

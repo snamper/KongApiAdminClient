@@ -4,7 +4,9 @@ use Gco\KongApiClient\Service\Service;
 
 interface ServiceRepositoryContract
 {
-    public function find(string $identity):? Service;
+    public function find(string $id):? Service;
+
+    public function findByName(string $name):? Service;
 
     public function create(array $params = []): array;
 
