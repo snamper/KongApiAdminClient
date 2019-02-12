@@ -37,6 +37,14 @@ class Service
         return true;
     }
 
+    public function update(Configuration $configuration): Bool
+    {
+        $serviceUpdatedData = $this->serviceRepository->update($this->identity(), $this->configuration->toArray());
+        $this->configuration = $configuration;
+        $this->name = $serviceUpdatedData['name'];
+        return true;
+    }
+
     public function addRoutes(array $routes): bool
     {
         foreach($routes as $route){
@@ -84,5 +92,10 @@ class Service
         foreach ($this->routes(true) as $route) {
             $route->delete();
         }
+    }
+
+    public function getConfiguration():Configuration
+    {
+        return $this->configuration;
     }
 }
