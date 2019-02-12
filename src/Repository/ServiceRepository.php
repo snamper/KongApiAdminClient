@@ -62,7 +62,10 @@ class ServiceRepository implements ServiceRepositoryContract
 
     public function update(string $identity, array $params): array
     {
-        // TODO: Implement update() method.
+        return $this->httpClient->put(
+            config('kong.url') . '/services',
+            $params
+        );
     }
 
     public function delete(string $identity): bool

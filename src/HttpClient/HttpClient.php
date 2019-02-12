@@ -32,6 +32,17 @@ class HttpClient implements HttpClientContract
         return json_decode($response->getBody(), true);
     }
 
+    public function put(string $url, array $params)
+    {
+        try {
+            $response = $this->client->put($url, ['debug' => config('kong.debug'), RequestOptions::JSON => $params]);
+            return json_decode($response->getBody(), true);
+        }catch (ClientException $e){
+            $this->throwDomainException($e);
+            throw $e;
+        }
+    }
+
     public function delete(string $url, array $params = [])
     {
         $this->client->delete($url, $params);
