@@ -1,18 +1,18 @@
-<?php namespace Gco\KongApiClient\Tests\Unit;
+<?php namespace Gco\KongApiClient\Tests\Domain\Unit;
 
 use Gco\KongApiClient\Exceptions\InvalidServiceConfiguration;
-use Gco\KongApiClient\HttpClient\HttpClientContract;
-use Gco\KongApiClient\Service\Configuration;
-use Gco\KongApiClient\Service\Service;
+use Gco\KongApiClient\Repository\Contract\ServiceRepositoryContract;
+use Gco\KongApiClient\Domain\Service\Configuration;
+use Gco\KongApiClient\Domain\Service\Service;
 use Gco\KongApiClient\Tests\TestCase;
-use Gco\KongApiClient\Tests\Unit\HttpClientDouble\HttpClientFailed;
-use Gco\KongApiClient\Tests\Unit\HttpClientDouble\HttpClientOk;
+use Gco\KongApiClient\Tests\Unit\RepositoryDouble\Service\CreateKoImplServiceRepository;
+use Gco\KongApiClient\Tests\Unit\RepositoryDouble\Service\CreateOkImplServiceRepository;
 
 class ServiceTest extends TestCase
 {
     public function test_ShouldCreateAService_WhenSpecifyingUrlAndServiceName()
     {
-        $this->app->instance(HttpClientContract::class, app(HttpClientOk::class));
+        $this->app->instance(ServiceRepositoryContract::class, app(CreateOkImplServiceRepository::class));
 
         $configuration = new Configuration();
         $configuration->setName('service_name')
@@ -39,7 +39,7 @@ class ServiceTest extends TestCase
 
     public function test_ShouldNotCreateAService()
     {
-        $this->app->instance(HttpClientContract::class, app(HttpClientFailed::class));
+        $this->app->instance(ServiceRepositoryContract::class, app(CreateKoImplServiceRepository::class));
 
         $configuration = new Configuration();
         $configuration->setName('service name')

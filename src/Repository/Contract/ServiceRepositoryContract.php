@@ -1,6 +1,6 @@
 <?php namespace Gco\KongApiClient\Repository\Contract;
 
-use Gco\KongApiClient\Service\Service;
+use Gco\KongApiClient\Domain\Service\Service;
 
 interface ServiceRepositoryContract
 {

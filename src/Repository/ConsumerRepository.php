@@ -1,7 +1,6 @@
 <?php namespace Gco\KongApiClient\Repository;
 
 use Gco\KongApiClient\Consumer\Consumer;
-use Gco\KongApiClient\Consumer\Jwt;
 use Gco\KongApiClient\HttpClient\HttpClientContract;
 use Gco\KongApiClient\Repository\Contract\ConsumerRepositoryContract;
 
@@ -34,10 +33,8 @@ class ConsumerRepository implements ConsumerRepositoryContract
         // TODO: Implement delete() method.
     }
 
-    public function createJwtToken(string $id): Jwt
+    public function createJwtToken(string $id): array
     {
-        $jwtData = $this->httpClient->post(config('kong.url').'/consumers/'.$id.'/jwt');
-        $consumerId = $jwtData['consumer']['id'];
-        return new Jwt($jwtData['id'], $consumerId, $jwtData['key'], $jwtData['secret']);
+        return $this->httpClient->post(config('kong.url').'/consumers/'.$id.'/jwt');
     }
 }

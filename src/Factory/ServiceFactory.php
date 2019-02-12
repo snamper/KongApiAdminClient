@@ -1,7 +1,7 @@
 <?php namespace Gco\KongApiClient\Factory;
 
-use Gco\KongApiClient\Service\Configuration;
-use Gco\KongApiClient\Service\Service;
+use Gco\KongApiClient\Domain\Service\Configuration;
+use Gco\KongApiClient\Domain\Service\Service;
 
 class ServiceFactory
 {

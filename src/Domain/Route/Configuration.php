@@ -1,4 +1,4 @@
-<?php namespace Gco\KongApiClient\Route;
+<?php namespace Gco\KongApiClient\Domain\Route;
 
 use Gco\KongApiClient\Utils\WhenAble;
 

@@ -1,8 +1,8 @@
-<?php namespace Gco\KongApiClient\Service;
+<?php namespace Gco\KongApiClient\Domain\Service;
 
 use Gco\KongApiClient\Repository\Contract\RouteRepositoryContract;
 use Gco\KongApiClient\Repository\Contract\ServiceRepositoryContract;
-use Gco\KongApiClient\Route\Route;
+use Gco\KongApiClient\Domain\Route\Route;
 
 class Service
 {

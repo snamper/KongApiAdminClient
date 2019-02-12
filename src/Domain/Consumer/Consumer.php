@@ -1,4 +1,4 @@
-<?php namespace Gco\KongApiClient\Consumer;
+<?php namespace Gco\KongApiClient\Domain\Consumer;
 
 use Gco\KongApiClient\Exceptions\InvalidConsumerInput;
 use Gco\KongApiClient\Repository\Contract\ConsumerRepositoryContract;
@@ -34,7 +34,9 @@ class Consumer
 
     public function createJwtToken():Jwt
     {
-        $this->jwt[] = $jwt = $this->consumerRepository->createJwtToken($this->id);
+        $jwtData = $this->consumerRepository->createJwtToken($this->id);
+        $consumerId = $jwtData['consumer']['id'];
+        $this->jwt[] = $jwt = new Jwt($jwtData['id'], $consumerId, $jwtData['key'], $jwtData['secret']);
         return $jwt;
     }
 

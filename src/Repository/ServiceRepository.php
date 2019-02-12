@@ -3,7 +3,7 @@
 use Gco\KongApiClient\Factory\ServiceFactory;
 use Gco\KongApiClient\HttpClient\HttpClientContract;
 use Gco\KongApiClient\Repository\Contract\ServiceRepositoryContract;
-use Gco\KongApiClient\Service\Service;
+use Gco\KongApiClient\Domain\Service\Service;
 
 class ServiceRepository implements ServiceRepositoryContract
 {

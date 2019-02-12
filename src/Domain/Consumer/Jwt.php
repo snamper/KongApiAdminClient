@@ -1,4 +1,4 @@
-<?php namespace Gco\KongApiClient\Consumer;
+<?php namespace Gco\KongApiClient\Domain\Consumer;
 
 use \Firebase\JWT\JWT as JwtLib;
 use Illuminate\Support\Facades\Log;

@@ -4,8 +4,10 @@ use Gco\KongApiClient\HttpClient\HttpClient;
 use Gco\KongApiClient\HttpClient\HttpClientContract;
 use Gco\KongApiClient\Repository\ConsumerRepository;
 use Gco\KongApiClient\Repository\Contract\ConsumerRepositoryContract;
+use Gco\KongApiClient\Repository\Contract\PluginRepositoryContract;
 use Gco\KongApiClient\Repository\Contract\RouteRepositoryContract;
 use Gco\KongApiClient\Repository\Contract\ServiceRepositoryContract;
+use Gco\KongApiClient\Repository\PluginRepository;
 use Gco\KongApiClient\Repository\RouteRepository;
 use Gco\KongApiClient\Repository\ServiceRepository;
 use Illuminate\Support\ServiceProvider;
@@ -17,6 +19,7 @@ class GcoKongApiClientServiceProvider extends ServiceProvider
         ServiceRepositoryContract::class => ServiceRepository::class,
         RouteRepositoryContract::class => RouteRepository::class,
         ConsumerRepositoryContract::class => ConsumerRepository::class,
+        PluginRepositoryContract::class => PluginRepository::class,
     ];
 
     public function boot()

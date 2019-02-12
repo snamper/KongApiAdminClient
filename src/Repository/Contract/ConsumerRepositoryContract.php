@@ -1,8 +1,6 @@
 <?php namespace Gco\KongApiClient\Repository\Contract;
 
-
 use Gco\KongApiClient\Consumer\Consumer;
-use Gco\KongApiClient\Consumer\Jwt;
 
 interface ConsumerRepositoryContract
 {
@@ -14,5 +12,5 @@ interface ConsumerRepositoryContract
 
     public function delete(string $identity): bool;
 
-    public function createJwtToken(string $id):Jwt;
+    public function createJwtToken(string $id): array;
 }

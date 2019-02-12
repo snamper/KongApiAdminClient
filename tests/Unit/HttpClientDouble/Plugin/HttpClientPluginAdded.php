@@ -15,7 +15,8 @@ class HttpClientPluginAdded implements HttpClientContract
             "consumer" => null,
             "config" => null,
             "run_on" => "first",
-            "enabled" =>  true
+            "enabled" =>  true,
+            'consumer' => ['id' => 1]
         ];
     }
 

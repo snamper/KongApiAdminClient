@@ -1,6 +1,6 @@
 <?php namespace Gco\KongApiClient\Repository\Contract;
 
-use Gco\KongApiClient\Route\Route;
+use Gco\KongApiClient\Domain\Route\Route;
 
 interface RouteRepositoryContract
 {

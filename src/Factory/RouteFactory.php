@@ -1,7 +1,7 @@
 <?php namespace Gco\KongApiClient\Factory;
 
-use Gco\KongApiClient\Route\Configuration;
-use Gco\KongApiClient\Route\Route;
+use Gco\KongApiClient\Domain\Route\Configuration;
+use Gco\KongApiClient\Domain\Route\Route;
 
 class RouteFactory
 {

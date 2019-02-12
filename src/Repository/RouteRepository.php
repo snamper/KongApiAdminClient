@@ -3,7 +3,7 @@
 use Gco\KongApiClient\Factory\RouteFactory;
 use Gco\KongApiClient\HttpClient\HttpClientContract;
 use Gco\KongApiClient\Repository\Contract\RouteRepositoryContract;
-use Gco\KongApiClient\Route\Route;
+use Gco\KongApiClient\Domain\Route\Route;
 
 class RouteRepository implements RouteRepositoryContract
 {

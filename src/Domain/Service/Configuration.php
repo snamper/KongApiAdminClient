@@ -1,4 +1,4 @@
-<?php namespace Gco\KongApiClient\Service;
+<?php namespace Gco\KongApiClient\Domain\Service;
 
 
 use Gco\KongApiClient\Exceptions\InvalidServiceConfiguration;
