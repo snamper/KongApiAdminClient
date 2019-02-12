@@ -36,6 +36,22 @@ class ServiceRepository implements ServiceRepositoryContract
         return null;
     }
 
+    public function list():array
+    {
+        $services = [];
+        $url = config('kong.url') . '/services/';
+        do {
+            $servicesData = $this->httpClient->get($url);
+            foreach ($servicesData['data'] as $service) {
+                $services[] = app(ServiceFactory::class)->build($service);
+            }
+            if($servicesData['next'] !== null){
+                $url = $servicesData['next'];
+            }
+        }while($servicesData['next'] !== null);
+        return $services;
+    }
+
     public function create(array $params = []): array
     {
         return $this->httpClient->post(

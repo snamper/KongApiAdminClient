@@ -1,10 +1,15 @@
-<?php namespace Gco\KongApiClient\Tests\Unit\HttpClientDouble;
+<?php namespace Gco\KongApiClient\Tests\Unit\HttpClientDouble\Service;
 
 use Gco\KongApiClient\HttpClient\HttpClientContract;
 
-class HttpClientOk implements HttpClientContract
+class FindImplHttpClient implements HttpClientContract
 {
     public function post(string $url, array $params = [], array $headers = [])
+    {
+        return [];
+    }
+
+    public function get(string $url, array $params = [])
     {
         return [
             "host" => "mockbin.org",
@@ -20,10 +25,6 @@ class HttpClientOk implements HttpClientContract
             "retries" => 5,
             "write_timeout" => 60000
         ];
-    }
-
-    public function get(string $url, array $params = [])
-    {
     }
 
     public function delete(string $url, array $params = [])
