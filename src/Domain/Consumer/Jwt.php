@@ -23,14 +23,9 @@ class Jwt
 
     public function sign(string $alg = 'HS256')
     {
-        $time = time();
         $payload = [
-            'iss' => $this->key,
-            "exp" => $time,
-            "nbf" => $time,
-            "iat" => $time
+            'iss' => $this->key
         ];
-        Log::emergency('jwt', [JwtLib::encode($payload, $this->secret), $this->key, $this->secret]);
         return JwtLib::encode($payload, $this->secret, $alg);
     }
 

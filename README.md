@@ -1,13 +1,6 @@
 # KongApiAdminClient
 
-How to install 
-
-
 Client Laravel for the kong admin api
 
-How to contribute 
+#Do not use it, not Ready For production !!!
 
-
-Unit Testing 
-
-Run the test
